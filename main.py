@@ -8,6 +8,7 @@ from typing import List
 #import pyarrow.parquet as pq
 import numpy as np  # Agregamos la importación de numpy
 import os
+import pyarrow.parquet as pq
 
 app = FastAPI()
 
@@ -29,7 +30,8 @@ def developer(desarrollador: str):
      desarrolladora
   '''
   try:
-    df = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz') 
+    df = pq.read_table('./src/datasource/render/steam_games_4Api.parquet').to_pandas()
+    #df = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz')
   except Exception as err:
     return (f'{err}')
      
@@ -48,9 +50,12 @@ def developer(desarrollador: str):
 @app.get('/userdata/{userId}')
 def userdata(userId: str):
   try:
-    dfUserItems = pd.read_csv('./src/datasource/render/user_items_4Api.csv.gz') 
-    dfSteam = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz') 
-    dfUserReviews = pd.read_csv('./src/datasource/render/user_reviews_4Api.csv.gz') 
+    dfUserItems = pq.read_table('./src/datasource/render/user_items_4Api.parquet').to_pandas()
+    dfSteam = pq.read_table('./src/datasource/render/steam_games_4Api.parquet').to_pandas()
+    dfUserReviews = pq.read_table('./src/datasource/render/user_reviews_4Api.parquet').to_pandas()
+    #dfUserItems = pd.read_csv('./src/datasource/render/user_items_4Api.csv.gz') 
+    #dfSteam = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz') 
+    #dfUserReviews = pd.read_csv('./src/datasource/render/user_reviews_4Api.csv.gz') 
   except Exception as err:
     return (f'{err}')
 
@@ -94,8 +99,10 @@ def UserForGenre(genero: str):
   """
   # Let's put together the name of the genre column to search in dfSteam
   try:
-    dfUserItems = pd.read_csv('./src/datasource/render/user_items_4Api.csv.gz') 
-    dfSteam = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz') 
+    dfUserItems = pq.read_table('./src/datasource/render/user_items_4Api.parquet').to_pandas()
+    dfSteam = pq.read_table('./src/datasource/render/steam_games_4Api.parquet').to_pandas()
+    #dfUserItems = pd.read_csv('./src/datasource/render/user_items_4Api.csv.gz') 
+    #dfSteam = pd.read_csv('./src/datasource/render/steam_games_4Api.csv.gz') 
   except Exception as err:
     return (f'{err}')
   
