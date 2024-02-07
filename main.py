@@ -61,10 +61,10 @@ def userdata(userId: str):
 
   # Filtrar el dataframe dfUserItems por usuario
   userItems = dfUserItems[dfUserItems['user_id'] == userId]
-
+  del dfUserItems
   # Unir el dataframe filtrado con los dfSteam que coincidan con 'item_id'
   itemsWithPrices = userItems.merge(dfSteam, left_on = 'item_id', right_on = 'id', how = 'inner')
-  
+  del dfSteam
   # Calcular el gasto total
   totalSpent = itemsWithPrices['price'].sum()
   
