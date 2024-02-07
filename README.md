@@ -175,7 +175,7 @@ En el cuaderno '__eda_user_review.ipynb__' se creo la columna 'sentiment_analysi
 
 ## API
 
-![API](https://github.com/barisoft/PI_ML_OPS/tree/main/src/)
+![API](src/assets/FastAPI.png)
 
 Ha sido configurado un servidor gratuito en la plataforma Render para correr FastAPI. En el siguiente enlace podemos tener acceso a los endpoints:
 Enlace al servidor fastAPI en Render
